@@ -1,0 +1,601 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Line Chart</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <style>
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="display: flex; margin-bottom: 200px;">
+        <section style="width:50%">
+            <canvas id="UmidadeReal"></canvas>
+        </section>
+        <section style="width: 50%;">
+            <canvas id="TempReal"></canvas>
+        </section>
+    </div>
+    <div style="display: flex; margin-bottom: 200px;">
+        <section style="width:50%">
+            <canvas id="UmidadeMtBaixa"></canvas>
+        </section>
+        <section style="width: 50%;">
+            <canvas id="TempMtBaixa"></canvas>
+        </section>
+    </div>
+    <div style="display: flex; margin-bottom: 200px;">
+        <section style="width:50%">
+            <canvas id="UmidadeBaixa"></canvas>
+        </section>
+        <section style="width: 50%;">
+            <canvas id="TempBaixa"></canvas>
+        </section>
+    </div>
+    <div style="display: flex; margin-bottom: 200px;">
+        <section style="width:50%">
+            <canvas id="UmidadeIdeal"></canvas>
+        </section>
+        <section style="width: 50%;">
+            <canvas id="TempIdeal"></canvas>
+        </section>
+    </div>
+    <div style="display: flex; margin-bottom: 200px;">
+        <section style="width:50%">
+            <canvas id="UmidadeAlta"></canvas>
+        </section>
+        <section style="width: 50%;">
+            <canvas id="TempAlta"></canvas>
+        </section>
+    </div>
+    <div style="display: flex; margin-bottom: 200px;">
+        <section style="width:50%">
+            <canvas id="UmidadeMtAlta"></canvas>
+        </section>
+        <section style="width: 50%;">
+            <canvas id="TempMtAlta"></canvas>
+        </section>
+    </div>
+
+    <script>
+        /* -- Umidade Real -- */
+        var contextoUmidadeReal = document.getElementById('UmidadeReal').getContext('2d');
+        contextoUmidadeReal.canvas.width = 500;
+        contextoUmidadeReal.canvas.height = 300;
+        var UmidadeReal = new Chart(
+            contextoUmidadeReal,
+            {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Umidade',
+                        type: 'line',
+                        borderColor: ['#45b3e7'],
+                        backgroundColor: ['#89cff0']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Umidade'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+        /* -- Temperatura Real -- */
+        var contextoTempReal = document.getElementById('TempReal').getContext('2d');
+        contextoTempReal.canvas.width = 500;
+        contextoTempReal.canvas.height = 300;
+        var TempReal = new Chart(
+            contextoTempReal,
+            {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: "Temperatura",
+                        type: 'line',
+                        borderColor: ['#ff3232'],
+                        backgroundColor: ['#ff7f7f']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Luminosidade'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+        /* -- Umidade Muito Baixa -- */
+        var contextoUmidadeMtBaixa = document.getElementById('UmidadeMtBaixa').getContext('2d');
+        contextoUmidadeMtBaixa.canvas.width = 500;
+        contextoUmidadeMtBaixa.canvas.height = 300;
+        var UmidadeMtBaixa = new Chart(
+            contextoUmidadeMtBaixa,
+            {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Umidade',
+                        type: 'line',
+                        borderColor: ['#45b3e7'],
+                        backgroundColor: ['#89cff0']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Umidade'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+        /* -- Temperatura Muito Baixa -- */
+        var contextoTempMtBaixa = document.getElementById('TempMtBaixa').getContext('2d');
+        contextoTempMtBaixa.canvas.width = 500;
+        contextoTempMtBaixa.canvas.height = 300;
+        var TempMtBaixa = new Chart(
+            contextoTempMtBaixa,
+            {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: "Temperatura",
+                        type: 'line',
+                        borderColor: ['#ff3232'],
+                        backgroundColor: ['#ff7f7f']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Luminosidade'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+        /* -- Umidade Baixa -- */
+        var contextoUmidadeBaixa = document.getElementById('UmidadeBaixa').getContext('2d');
+        contextoUmidadeBaixa.canvas.width = 500;
+        contextoUmidadeBaixa.canvas.height = 300;
+        var UmidadeBaixa = new Chart(
+            contextoUmidadeBaixa,
+            {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Umidade',
+                        type: 'line',
+                        borderColor: ['#45b3e7'],
+                        backgroundColor: ['#89cff0']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Umidade'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+        /* -- Temperatura Baixa -- */
+        var contextoTempBaixa = document.getElementById('TempBaixa').getContext('2d');
+        contextoTempBaixa.canvas.width = 500;
+        contextoTempBaixa.canvas.height = 300;
+        var TempBaixa = new Chart(
+            contextoTempBaixa,
+            {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: "Temperatura",
+                        type: 'line',
+                        borderColor: ['#ff3232'],
+                        backgroundColor: ['#ff7f7f']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Luminosidade'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+        /* -- Umidade Ideal -- */
+        var contextoUmidadeIdeal = document.getElementById('UmidadeIdeal').getContext('2d');
+        contextoUmidadeIdeal.canvas.width = 500;
+        contextoUmidadeIdeal.canvas.height = 300;
+        var UmidadeIdeal = new Chart(
+            contextoUmidadeIdeal,
+            {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Umidade',
+                        type: 'line',
+                        borderColor: ['#45b3e7'],
+                        backgroundColor: ['#89cff0']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Umidade'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+        /* -- Temperatura Ideal -- */
+        var contextoTempIdeal = document.getElementById('TempIdeal').getContext('2d');
+        contextoTempIdeal.canvas.width = 500;
+        contextoTempIdeal.canvas.height = 300;
+        var TempIdeal = new Chart(
+            contextoTempIdeal,
+            {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: "Temperatura",
+                        type: 'line',
+                        borderColor: ['#ff3232'],
+                        backgroundColor: ['#ff7f7f']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Luminosidade'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+        /* -- Umidade Alta -- */
+        var contextoUmidadeAlta = document.getElementById('UmidadeAlta').getContext('2d');
+        contextoUmidadeAlta.canvas.width = 500;
+        contextoUmidadeAlta.canvas.height = 300;
+        var UmidadeAlta = new Chart(
+            contextoUmidadeAlta,
+            {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Umidade',
+                        type: 'line',
+                        borderColor: ['#45b3e7'],
+                        backgroundColor: ['#89cff0']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Umidade'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+        /* -- Temperatura Alta -- */
+        var contextoTempAlta = document.getElementById('TempAlta').getContext('2d');
+        contextoTempAlta.canvas.width = 500;
+        contextoTempAlta.canvas.height = 300;
+        var TempAlta = new Chart(
+            contextoTempAlta,
+            {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: "Temperatura",
+                        type: 'line',
+                        borderColor: ['#ff3232'],
+                        backgroundColor: ['#ff7f7f']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Luminosidade'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+        /* -- Umidade Muito Alta -- */
+        var contextoUmidadeMtAlta = document.getElementById('UmidadeMtAlta').getContext('2d');
+        contextoUmidadeMtAlta.canvas.width = 500;
+        contextoUmidadeMtAlta.canvas.height = 300;
+        var UmidadeMtAlta = new Chart(
+            contextoUmidadeMtAlta,
+            {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Umidade',
+                        type: 'line',
+                        borderColor: ['#45b3e7'],
+                        backgroundColor: ['#89cff0']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Umidade'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+        /* -- Temperatura Muito Alta -- */
+        var contextoTempMtAlta = document.getElementById('TempMtAlta').getContext('2d');
+        contextoTempMtAlta.canvas.width = 500;
+        contextoTempMtAlta.canvas.height = 300;
+        var TempMtAlta = new Chart(
+            contextoTempMtAlta,
+            {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: "Temperatura",
+                        type: 'line',
+                        borderColor: ['#ff3232'],
+                        backgroundColor: ['#ff7f7f']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Luminosidade'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+        
+        var paginacao = {};
+        var tempo = {};
+        function obterDados(grafico, endpoint) {
+            var http = new XMLHttpRequest();
+            http.open('GET', 'http://localhost:3300/sensores/' + endpoint, false);
+            http.send(null);
+            var valores = JSON.parse(http.responseText);
+            if (paginacao[endpoint] == null) {
+                paginacao[endpoint] = 0;
+            }
+            if (tempo[endpoint] == null) {
+                tempo[endpoint] = 0;
+            }
+            // Exibir à partir do último elemento exibido anteriormente
+            var ultimaPaginacao = paginacao[endpoint];
+            paginacao[endpoint] = valores.length;
+            var valores = valores.slice(ultimaPaginacao);
+            valores.forEach((valor) => {
+                //Máximo de 60 itens exibidos no gráfico
+                if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+                    grafico.data.labels.shift();
+                    grafico.data.datasets[0].data.shift();
+                }
+
+                grafico.data.labels.push(tempo[endpoint]++);
+                grafico.data.datasets[0].data.push(parseFloat(valor));
+                grafico.update();
+            })
+        }
+
+        setInterval(() => {
+            obterDados(UmidadeReal, 'dht11/UmidadeReal');
+            obterDados(TempReal, 'dht11/TemperaturaReal');
+            obterDados(UmidadeMtBaixa, 'dht11/UmidadeMtBaixa');
+            obterDados(TempMtBaixa, 'dht11/TemperaturaMtBaixa');
+            obterDados(UmidadeBaixa, 'dht11/UmidadeBaixa');
+            obterDados(TempBaixa, 'dht11/TemperaturaBaixa');
+            obterDados(UmidadeIdeal, 'dht11/UmidadeIdeal');
+            obterDados(TempIdeal, 'dht11/TemperaturaIdeal');
+            obterDados(UmidadeAlta, 'dht11/UmidadeAlta');
+            obterDados(TempAlta, 'dht11/TemperaturaAlta');
+            obterDados(UmidadeMtAlta, 'dht11/UmidadeMtAlta');
+            obterDados(TempMtAlta, 'dht11/TemperaturaMtAlta');
+
+
+        }, 1000);
+
+    </script>
+</body>
+
+</html>
